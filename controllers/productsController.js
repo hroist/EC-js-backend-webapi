@@ -7,18 +7,29 @@ controller.param("artnr", (req, res, next, artnr) => {
     next()
 })
 
-// GET - READ - HÄMTA ALLA PRODUKTER - http://localhost:5000/api/products
-const {take} = req.query
-controller.get(`/:take=${take}`, (httpRequest, httpResponse) => {
-    httpResponse.status(200).json(products)
-})
 
 // GET - READ - HÄMTA ALLA PRODUKTER - http://localhost:5000/api/products
-controller.get('/:artnr', (httpRequest, httpResponse) => {
-    if (httpRequest != undefined)
-        httpResponse.status(200).json(httpRequest.product)
-    else    
-        httpResponse.status(404).json()
+controller.get('/', (req, res) => {
+        console.log(req.query)
+        const { take } = req.query
+        let sortedProducts = [...products]
+
+        if( take > 0){
+            sortedProducts = sortedProducts.slice(0, Number(take))
+        } 
+
+        res.status(200).json(sortedProducts)
+})
+
+
+// GET - READ - HÄMTA ALLA PRODUKTER - http://localhost:5000/api/products
+controller.route('/:artnr').get((req, res) => {
+    if (req != undefined){
+        console.log(req.params)
+        res.status(200).json(req.product)
+    } else {    
+        res.status(404).json()
+    }
 })
 
 module.exports = controller

@@ -6,6 +6,7 @@ const app = express()
 
 // middleware
 app.use(cors())
+app.use(express.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 
 const productsController = require('./controllers/productsController')
