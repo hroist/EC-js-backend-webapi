@@ -3,127 +3,141 @@ const products = [
     {
         "articleNumber": "d3984cd9-f121-4981-8d03-83198d441379",
         "name": "Black coat",
-        "description": "",
+        "description": "This jacket is long and padded and features a high collar, long sleeves, a double zipper closure with a flap-and-snap fastener and side pockets. This jacket comes in black.",
         "category": "Coats",
         "price": 95,
         "rating": 4,
+        "featured": false,
         "imageName": "https://win22imgstorage.blob.core.windows.net/images/black-coat.png"
       },
       {
         "articleNumber": "20222c00-4548-4149-9efd-49883e9f57b5",
         "name": "Black dress",
-        "description": "",
+        "description": "This mini dress features an off shoulder design with an inner silicone trim, a bodycon fit and a stretchy material. This mini dress comes in black.",
         "category": "Dresses",
         "price": 88,
         "rating": 5,
+        "featured": true,
         "imageName": "https://win22imgstorage.blob.core.windows.net/images/black-dress.png"
       },
       {
         "articleNumber": "19173bb6-20e1-4f81-ae63-c969a23e794e",
         "name": "Black top & pants set",
-        "description": "",
+        "description": "These pants feature a high waist fit, a straight leg with a slit detail, a side zipper closure and a stretchy material. These pants comes in black.",
         "category": "Sets",
         "price": 107,
         "rating": 3,
+        "featured": true,
         "imageName": "https://win22imgstorage.blob.core.windows.net/images/black-set.png"
       },
       {
         "articleNumber": "4bf6d7af-aa33-455c-9403-8301ea13071c",
         "name": "White top & black pants set",
-        "description": "",
+        "description": "This bikini bottom features a triangle design. It has a self-tie drawstring on the sides and underlining. This bikini bottom features a classic fit. This bikini bottom comes in white.",
         "category": "Sets",
         "price": 115,
         "rating": 2,
+        "featured": true,
         "imageName": "https://win22imgstorage.blob.core.windows.net/images/black-white-set.png"
       },
       {
         "articleNumber": "77e280d3-7c56-41d0-8b48-1e5c8a4f1605",
         "name": "Blue jacket",
-        "description": "",
+        "description": "This blazer is oversized and features a pointed lapel neckline, a mock chest pocket, long sleeves with button cuffs, a double-breasted button design, 2 front flap pockets and a back slit detail. This blazer comes in off-white.",
         "category": "Jackets",
         "price": 299,
         "rating": 5,
+        "featured": false,
         "imageName": "https://win22imgstorage.blob.core.windows.net/images/blue-jacket.png"
       },
       {
         "articleNumber": "a268e0d8-010a-44c4-b4f0-738a01117573",
         "name": "Blue hoody & pants",
-        "description": "",
+        "description": "2 front flap pockets and a back slit detail. This blazer comes in off-white.",
         "category": "Sets",
         "price": 150,
         "rating": 5,
+        "featured": false,
         "imageName": "https://win22imgstorage.blob.core.windows.net/images/blue-set.png"
       },
       {
         "articleNumber": "267e6b12-d558-49de-92c2-6b2a59433ce9",
         "name": "Blue t-shirt",
-        "description": "",
+        "description": "Shell: 94% Recycled polyester, 6% Elastane. Lining: 100% Polyester.",
         "category": "T-Shirts",
         "price": 25,
         "rating": 5,
+        "featured": false,
         "imageName": "https://win22imgstorage.blob.core.windows.net/images/blue-tshirt.png"
       },
       {
         "articleNumber": "cda0aa8d-c0e1-41a7-ae26-343ffc84e141",
         "name": "Brown sweater",
-        "description": "",
+        "description": "Mock chest pocket, long sleeves with button cuffs, a double-breasted button",
         "category": "Sweaters",
         "price": 35,
         "rating": 4,
+        "featured": false,
         "imageName": "https://win22imgstorage.blob.core.windows.net/images/brown-sweater.png"
       },
       {
         "articleNumber": "bf1fffeb-c30b-4380-8384-223d3c80b792",
         "name": "Brown watch",
-        "description": "",
+        "description": "Wash with similar colours",
         "category": "Watches",
         "price": 150,
         "rating": 3,
+        "featured": false,
         "imageName": "https://win22imgstorage.blob.core.windows.net/images/brown-watch.png"
       },
       {
         "articleNumber": "6c871493-805c-45e9-b66a-d62dd511c930",
         "name": "Stiletto shoes",
-        "description": "",
+        "description": "Dress for success.",
         "category": "Shoes",
         "price": 89,
         "rating": 3,
+        "featured": false,
         "imageName": "https://win22imgstorage.blob.core.windows.net/images/chrome-shoe.png"
       },
       {
         "articleNumber": "086841a8-fb2e-4ee6-80b1-4dce62e168ae",
         "name": "Gray t-shirt",
-        "description": "",
+        "description": "This cardigan is knitted and features dropped shoulders, long sleeves with ribbed cuffs, a V-neck, a button closure down the front, cropped length and ribbed hems. This cardigan comes in grey.",
         "category": "T-Shirts",
         "price": 15,
         "rating": 3,
+        "featured": true,
         "imageName": "https://win22imgstorage.blob.core.windows.net/images/gray-tshirt.png"
       },
       {
         "articleNumber": "c9a6a993-cd15-4022-8858-77a5bcb6cc12",
         "name": "Jeans dress",
-        "description": "",
+        "description": "100% Acrylic.",
         "category": "Jeans",
         "price": 55,
         "rating": 4,
+        "featured": false,
         "imageName": "https://win22imgstorage.blob.core.windows.net/images/jeans-dress.png"
       },
       {
         "articleNumber": "431255c5-eea7-40bd-9260-06ad7e83fbcd",
         "name": "Jeans jacket & pants",
-        "description": "",
+        "description": "Materials: 80% LENZING™ ECOVERO™ Viscose, 20% Polyamide.",
         "category": "Sets",
         "price": 110,
         "rating": 4,
+        "featured": false,
         "imageName": "https://win22imgstorage.blob.core.windows.net/images/jeans-set.png"
       },
       {
         "articleNumber": "133740ce-f0fe-4ebf-936d-3319237743e2",
         "name": "Olive sweater",
-        "description": "",
+        "description": "V-neck, a button closure down the front, cropped length and ribbed hems",
         "category": "Sweaters",
         "price": 19,
         "rating": 2,
+        "featured": true,
         "imageName": "https://win22imgstorage.blob.core.windows.net/images/olive-sweater.png"
       },
       {
@@ -133,6 +147,7 @@ const products = [
         "category": "T-shirts",
         "price": 25,
         "rating": 2,
+        "featured": false,
         "imageName": "https://win22imgstorage.blob.core.windows.net/images/multicolor-tshirt.png"
       },
       {
@@ -142,6 +157,7 @@ const products = [
         "category": "Bags",
         "price": 99,
         "rating": 5,
+        "featured": false,
         "imageName": "https://win22imgstorage.blob.core.windows.net/images/purple-bag.png"
       },
       {
@@ -151,6 +167,7 @@ const products = [
         "category": "Bags",
         "price": 105,
         "rating": 5,
+        "featured": true,
         "imageName": "https://win22imgstorage.blob.core.windows.net/images/red-bag.png"
       },
       {
@@ -160,6 +177,7 @@ const products = [
         "category": "Dresses",
         "price": 67,
         "rating": 3,
+        "featured": false,
         "imageName": "https://win22imgstorage.blob.core.windows.net/images/red-dress.png"
       },
       {
@@ -169,6 +187,7 @@ const products = [
         "category": "Tops",
         "price": 45,
         "rating": 4,
+        "featured": true,
         "imageName": "https://win22imgstorage.blob.core.windows.net/images/striped-top.png"
       },
       {
@@ -178,6 +197,7 @@ const products = [
         "category": "Pants",
         "price": 36,
         "rating": 2,
+        "featured": false,
         "imageName": "https://win22imgstorage.blob.core.windows.net/images/striped-pants.png"
       },
       {
@@ -187,6 +207,7 @@ const products = [
         "category": "Sweaters",
         "price": 25,
         "rating": 2,
+        "featured": true,
         "imageName": "https://win22imgstorage.blob.core.windows.net/images/white-sweater.png"
       },
       {
@@ -196,6 +217,7 @@ const products = [
         "category": "Shoes",
         "price": 85,
         "rating": 2,
+        "featured": false,
         "imageName": "https://win22imgstorage.blob.core.windows.net/images/winter-boots.png"
       }
 ]
