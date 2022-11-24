@@ -10,7 +10,6 @@ controller.param("artnr", (req, res, next, artnr) => {
 
 // GET - READ - HÄMTA ALLA PRODUKTER - http://localhost:5000/api/products
 controller.get('/', (req, res) => {
-        console.log(req.query)
         const { take } = req.query
         let sortedProducts = [...products]
 
