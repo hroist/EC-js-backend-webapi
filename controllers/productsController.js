@@ -48,7 +48,6 @@ controller.get('/', (req, res) => {
 // GET - READ - HÄMTA EN PRODUKT - http://localhost:5000/api/products
 controller.route('/:artnr').get((req, res) => {
     if (req != undefined){
-        console.log(req.params)
         res.status(200).json(req.product)
     } else {    
         res.status(404).json()
@@ -57,22 +56,12 @@ controller.route('/:artnr').get((req, res) => {
 
 
 // PUT - UPDATE PRODUCT
-// controller.put('/:artnr', (req, res) => {
-//     const { artnr } = req.params
-//     const product = products.find(product => product.articleNumber == artnr)
-//     const name = product.name
-//     console.log(artnr , name)
-//     res.send('hello')
-// })
-
 controller.route('/:artnr').put((req, res) => {
     if(req.product != undefined){
         
         let product = req.product
 
         product.name = req.body.name ? req.body.name : product.name
-        console.log(req.body.name)
-        console.log(product.name)
         product.category = req.body.category ? req.body.category : product.category
         product.description = req.body.description ? req.body.description : product.description
         product.rating = req.body.rating ? req.body.rating : product.rating
@@ -85,5 +74,17 @@ controller.route('/:artnr').put((req, res) => {
     else
         res.status(404).json()
     })
+
+
+// DELETE - DELETE PRODUCT
+controller.route('/:artnr').delete((req, res) => {
+    if(req.product != undefined){
+        products = products.filter(product => product.articleNumber !== req.product.articleNumber)
+        console.log("product deleted")
+        res.status(204).json()
+    }
+    else
+        res.status(404).json()
+})
 
 module.exports = controller
