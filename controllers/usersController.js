@@ -1,6 +1,6 @@
 const express = require('express')
 const controller = express.Router()
-let users = require('../data/simulated_database')
+let users = require('../data/simulated_database_users') 
 
 controller.param("id", async (req, res, next, id) => {
     req.user = users.find( user => user.id == id )
@@ -10,7 +10,7 @@ controller.param("id", async (req, res, next, id) => {
 // http://localhost:5000/api/users
 controller.post('/', (req, res) => {
     let user = {
-        id: (users[users.length - 1])?.id > 0 ? (users.length - 1)?.id + 1 : 1,
+        id: (users[users.length - 1])?.id > 0 ? (users[users.length - 1])?.id + 1 : 1,
         firstName: req.body.firstName,
         lastName: req.body.lastName,
         email: req.body.email,
@@ -18,6 +18,7 @@ controller.post('/', (req, res) => {
     }
 
     users.push(user)
+    console.log("user created")
     res.status(201).json(user)
 })
 
