@@ -1,17 +1,33 @@
 const express = require('express')
+const { default: mongoose } = require('mongoose')
 const controller = express.Router()
-let products = require('../data/simulated_database_products')
+// let products = require('../data/simulated_database_products')
 const { v4: uuidv4 } = require('uuid')
+const { listIndexes } = require('../schemas/productSchema')
 
-controller.param("artnr", (req, res, next, artnr) => {
-    req.product = products.find(product => product.articleNumber == artnr)
+const productSchema = require('../schemas/productSchema')
+
+controller.param("id", async (req, res, next, id) => {
+    req.product = await productSchema.findById(id)
+    req.product = ({
+        articleNumber: req.product._id.toString(),
+        name: req.product.name,
+        category: req.product.category,
+        description: req.product.description,
+        rating: req.product.rating,
+        price: req.product.price,
+        tag: req.product.tag,
+        imageName: req.product.imageName
+    })
+    
+
     next()
 })
 
 // POST - CREATE PRODUCT
 controller.post('/', (req, res) => {
     let product = {
-        articleNumber: uuidv4(),
+        // _id: new mongoose.Types.ObjectId(),
         name: req.body.name,
         category: req.body.category,
         description: req.body.description,
@@ -19,47 +35,61 @@ controller.post('/', (req, res) => {
         price: req.body.price,
         tag: req.body.tag,
         imageName: req.body.imageName,
-
     }
-
-    products.push(product)
-    console.log("product created")
+    productSchema.create(product)  
+    console.log("product created") 
     res.status(201).json(product)
-})
+}) 
 
 
 // GET - READ - HÄMTA ALLA ELLER NÅGRA PRODUKTER / FILTRERA MED TAGS - http://localhost:5000/api/products
-controller.get('/', (req, res) => {
-        const { take, tag } = req.query
-        let sortedProducts = [...products]
+controller.get('/', async (req, res) => {
+            const { take, tag } = req.query
+            let sortedProducts = []
+            let products = [...(await productSchema.find())]
+            if(products) {
+                for(let product of products) {
+                    sortedProducts.push({
+                        articleNumber: product._id,
+                        name: product.name,
+                        category: product.category,
+                        description: product.description,
+                        rating: product.rating,
+                        price: product.price,
+                        tag: product.tag,
+                        imageName: product.imageName
+                    })
+                }
+                if(tag) {
+                    sortedProducts = sortedProducts.filter(product => product.tag == tag)
+                }
+    
+                if( take > 0){
+                    sortedProducts = sortedProducts.slice(0, Number(take))
+                } 
+    
+                res.status(200).json(sortedProducts)
+            } else {
+                res.status(400).json()
+            }
 
-        if(tag) {
-            sortedProducts = sortedProducts.filter(product => product.tag == tag)
-        }
-
-        if( take > 0){
-            sortedProducts = sortedProducts.slice(0, Number(take))
-        } 
-
-        res.status(200).json(sortedProducts)
 })
 
 
 // GET - READ - HÄMTA EN PRODUKT - http://localhost:5000/api/products
-controller.route('/:artnr').get((req, res) => {
-    if (req != undefined){
+controller.route('/:id').get((req, res) => {
+    if (req.product != undefined){
         res.status(200).json(req.product)
     } else {    
-        res.status(404).json()
+        res.status(404).json() 
     }
 })
 
 
 // PUT - UPDATE PRODUCT
-controller.route('/:artnr').put((req, res) => {
+controller.route('/:id').put((req, res) => {
     if(req.product != undefined){
-        
-        let product = req.product
+        let product = req.product 
 
         product.name = req.body.name ? req.body.name : product.name
         product.category = req.body.category ? req.body.category : product.category
@@ -69,7 +99,9 @@ controller.route('/:artnr').put((req, res) => {
         product.tag = req.body.tag ? req.body.tag : product.tag
         product.imageName = req.body.imageName ? req.body.imageName : product.imageName
 
-        res.status(200).json(req.product)
+        console.log("product updated")
+        console.log(product)
+        res.status(200).json(product)
     }
     else
         res.status(404).json()
@@ -77,14 +109,14 @@ controller.route('/:artnr').put((req, res) => {
 
 
 // DELETE - DELETE PRODUCT
-controller.route('/:artnr').delete((req, res) => {
+controller.route('/:id').delete(async (req, res) => {
     if(req.product != undefined){
-        products = products.filter(product => product.articleNumber !== req.product.articleNumber)
-        console.log("product deleted")
-        res.status(204).json()
+        await productSchema.remove(req.product)
+        res.status(204).json() 
     }
-    else
+    else {
         res.status(404).json()
-})
+    }
+}) 
 
-module.exports = controller
+module.exports = controller 
