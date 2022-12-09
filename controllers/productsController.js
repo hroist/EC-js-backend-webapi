@@ -87,21 +87,22 @@ controller.route('/:id').get((req, res) => {
 
 
 // PUT - UPDATE PRODUCT
-controller.route('/:id').put((req, res) => {
+controller.route('/:id').put(async (req, res) => {
+    
     if(req.product != undefined){
-        let product = req.product 
-
-        product.name = req.body.name ? req.body.name : product.name
-        product.category = req.body.category ? req.body.category : product.category
-        product.description = req.body.description ? req.body.description : product.description
-        product.rating = req.body.rating ? req.body.rating : product.rating
-        product.price = req.body.price ? req.body.price : product.price
-        product.tag = req.body.tag ? req.body.tag : product.tag
-        product.imageName = req.body.imageName ? req.body.imageName : product.imageName
-
-        console.log("product updated")
-        console.log(product)
-        res.status(200).json(product)
+        await productSchema.updateOne(
+        { _id: req.product.articleNumber},
+        { $set: {
+            "name" : req.body.name ? req.body.name : req.product.name,
+            "category" : req.body.category ? req.body.category : req.product.category,
+            "description" : req.body.description ? req.body.description : req.product.description,
+            "rating" : req.body.rating ? req.body.rating : req.product.rating,
+            "price" : req.body.price ? req.body.price : req.product.price,
+            "tag" : req.body.tag ? req.body.tag : req.product.tag,
+            "imageName" : req.body.imageName ? req.body.imageName : req.product.imageName
+        }}
+        )
+        res.status(200).json(req.product)
     }
     else
         res.status(404).json()
