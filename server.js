@@ -16,7 +16,10 @@ const productsController = require('./controllers/productsController')
 app.use('/api/products', productsController)
 
 const usersController = require('./controllers/usersController')
-app.use('/api/users', usersController) 
+app.use('/api/users', usersController)
+
+const authenticationController = require('./controllers/authenticationController')
+app.use('/api/auth', authenticationController)
 
 // initialize 
 mongodb()

@@ -2,9 +2,8 @@ const express = require('express')
 const { default: mongoose } = require('mongoose')
 const controller = express.Router()
 // let products = require('../data/simulated_database_products')
-const { v4: uuidv4 } = require('uuid')
-const { listIndexes } = require('../schemas/productSchema')
 
+const { authorize } = require('../middlewares/authorization')
 const productSchema = require('../schemas/productSchema')
 
 controller.param("id", async (req, res, next, id) => {
@@ -24,7 +23,7 @@ controller.param("id", async (req, res, next, id) => {
     next()
 })
 
-// POST - CREATE PRODUCT
+// POST - CREATE PRODUCT 
 controller.post('/', (req, res) => {
     let product = {
         // _id: new mongoose.Types.ObjectId(),
@@ -87,7 +86,7 @@ controller.route('/:id').get((req, res) => {
 
 
 // PUT - UPDATE PRODUCT
-controller.route('/:id').put(async (req, res) => {
+controller.route('/:id').put(authorize, async (req, res) => {
     
     if(req.product != undefined){
         await productSchema.updateOne(
@@ -110,7 +109,7 @@ controller.route('/:id').put(async (req, res) => {
 
 
 // DELETE - DELETE PRODUCT
-controller.route('/:id').delete(async (req, res) => {
+controller.route('/:id').delete(authorize, async (req, res) => {
     if(req.product != undefined){
         await productSchema.remove(req.product)
         res.status(204).json() 
