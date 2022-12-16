@@ -5,6 +5,7 @@ const app = express()
 const cors = require('cors')
 const bodyParser = require('body-parser')
 const mongodb = require('./mongodb-server')
+const { graphqlHTTP } = require('express-graphql')
 
 // middleware
 app.use(cors())
@@ -21,7 +22,17 @@ app.use('/api/users', usersController)
 const authenticationController = require('./controllers/authenticationController')
 app.use('/api/auth', authenticationController)
 
+app.use('/graphql', graphqlHTTP({
+  schema: require('./schemas/graphQL/graphqlSchema'), 
+  graphiql: true
+}))
+
+/* This is the root route. It is used to check if the server is running. */
+app.get("/", (req, res) => {
+    res.status(200).json({ alive: "True" });
+  });
+
 // initialize 
 mongodb()
-app.listen(port, () => console.log(`WebApi is running on http://localhost:${port}`))
+module.exports = app.listen(port, () => console.log(`WebApi is running on http://localhost:${port}`))
 

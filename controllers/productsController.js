@@ -17,11 +17,9 @@ controller.param("id", async (req, res, next, id) => {
         price: req.product.price,
         tag: req.product.tag,
         imageName: req.product.imageName
-    })
-    
-
+    }) 
     next()
-})
+}) 
 
 // POST - CREATE PRODUCT 
 controller.post('/', (req, res) => {
@@ -115,7 +113,7 @@ controller.route('/:id').delete(authorize, async (req, res) => {
         res.status(204).json() 
     }
     else {
-        res.status(404).json()
+        res.status(404).json() 
     }
 }) 
 
