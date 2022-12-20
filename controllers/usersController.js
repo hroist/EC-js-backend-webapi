@@ -1,7 +1,6 @@
 const express = require('express')
 const controller = express.Router()
 const { default: mongoose } = require('mongoose')
-// let users = require('../data/simulated_database_users') 
 
 const userSchema = require('../schemas/userSchema')
 
@@ -37,8 +36,6 @@ controller.get('/', async (req, res) => {
     res.status(200).json(users)
 })
 
-// http://localhost:5000/api/users/id
-
 controller.route('/:id').get((req, res) => {
     if(req.user != undefined)
         res.status(200).json(req.user)
@@ -46,11 +43,9 @@ controller.route('/:id').get((req, res) => {
         res.status(404).json() 
 })
 
-
 controller.route('/:id').delete( async (req, res) => {
     if(req.user != undefined){
         await userSchema.deleteOne({ _id: req.user.id}) 
-        // await userSchema.remove(req.user) 
         res.status(204).json() 
     }
     else {

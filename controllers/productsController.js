@@ -1,7 +1,6 @@
 const express = require('express')
 const { default: mongoose } = require('mongoose')
 const controller = express.Router()
-// let products = require('../data/simulated_database_products')
 
 const { authorize } = require('../middlewares/authorization')
 const productSchema = require('../schemas/productSchema')
@@ -16,7 +15,7 @@ controller.param("id", async (req, res, next, id) => {
         rating: req.product.rating,
         price: req.product.price,
         tag: req.product.tag,
-        imageName: req.product.imageName
+        imageName: req.product.imageName  
     }) 
     next()
 }) 
@@ -24,7 +23,6 @@ controller.param("id", async (req, res, next, id) => {
 // POST - CREATE PRODUCT 
 controller.post('/', (req, res) => {
     let product = {
-        // _id: new mongoose.Types.ObjectId(),
         name: req.body.name,
         category: req.body.category,
         description: req.body.description,
@@ -109,8 +107,9 @@ controller.route('/:id').put(authorize, async (req, res) => {
 // DELETE - DELETE PRODUCT
 controller.route('/:id').delete(authorize, async (req, res) => {
     if(req.product != undefined){
-        await productSchema.remove(req.product)
-        res.status(204).json() 
+        await productSchema.deleteOne({ _id: req.product.articleNumber}) 
+        res.status(204).json()
+        console.log("product deleted") 
     }
     else {
         res.status(404).json() 

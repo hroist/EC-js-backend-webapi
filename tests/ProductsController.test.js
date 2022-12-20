@@ -5,8 +5,8 @@ const server = require("../server");
 require("dotenv").config();
 
 /* Connecting to the database before each test. */
-beforeEach(async () => {
-  await mongoose.connect(process.env.MONGODB_URI);
+beforeEach( () => {
+  mongoose.connect(process.env.MONGODB_URI);
 });
 
 
@@ -19,8 +19,8 @@ describe("GET /api/products", () => {
 });
 
 /* Closing database connection after each test. */
-afterEach(async () => {
-  await mongoose.connection.close();
+afterEach( () => {
+  mongoose.connection.close();
 });
 
 
